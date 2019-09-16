@@ -11,6 +11,9 @@ app.use(parser.json())
    .use(parser.urlencoded({ extended: true }));
 
 
+app.use(express.static(path.join(__dirname, '/client/dist/client' )));
+
+
 require('./server/config/database.js'); // connects database and loads models
 require('./server/config/routes.js')(app); // runs the routes function, passes app to routes
 

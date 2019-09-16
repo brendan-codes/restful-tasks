@@ -13,4 +13,4 @@ module.exports = function(error) { // simple error mapper pulls error fields and
     }
 
     this.status(422).json(errors);
-  };
+};
