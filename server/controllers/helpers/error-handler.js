@@ -12,5 +12,5 @@ module.exports = function(error) { // simple error mapper pulls error fields and
       errors.push('something went wrong!');
     }
 
-    this.status(422).json(errors);
+    this.json(errors);
 };
