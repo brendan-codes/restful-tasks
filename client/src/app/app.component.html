@@ -1,3 +1,9 @@
+<div *ngFor="let error of errors">
+   <p style="color: red"> {{ error }} </p>
+</div>
+
+{{ success }}
+
 <form (submit)="createTask()">
 
     <input type="text" name="newTask.title" [(ngModel)]="newTask.title">

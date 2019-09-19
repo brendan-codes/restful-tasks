@@ -19,6 +19,7 @@ module.exports = {
         .catch(errorHandler.bind(res));
     },
     update(req, res) {
+
       Task.findByIdAndUpdate(req.params.id, req.body, { new: true })
         .then(task => res.json(task))
         .catch(errorHandler.bind(res));

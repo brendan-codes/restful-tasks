@@ -12,6 +12,8 @@ let taskSchema = new Schema({
     },
     desc: {
         type: String,
+        required: [true, "You need to describe your task"],
+        minlength: [6, "Describe your task with six or more characters"],
         trim: true, // trim will truncate strings from "this has spaces   " to "this has spaces"
         default: ""
     },

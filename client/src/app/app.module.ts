@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms'; // <-- import FormsModule.
 import { AppComponent } from './app.component';
 import { TasksService } from './tasks.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [
     TasksService

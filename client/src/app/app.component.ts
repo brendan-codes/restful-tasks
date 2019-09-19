@@ -20,11 +20,13 @@ export class AppComponent implements OnInit {
     desc: ''
   };
 
+  success = '';
+
+  errors = [];
+
   constructor(private tasksService: TasksService) {}
 
   ngOnInit() {
-    // this.tasksService.getTasks();
-    // this.tasksService.tasks.subscribe(tasks => this.tasks = tasks);
     this.getTasks();
     this.getTaskById('5d7aacaef54421bd700ca9cd');
   }
@@ -49,17 +51,22 @@ export class AppComponent implements OnInit {
   }
 
   createTask() {
-    console.log(this.newTask);
-
     const obs = this.tasksService.postTask(this.newTask);
-    obs.subscribe((newlyCreatedTask: any) => {
-      console.log(newlyCreatedTask);
-      // this.getTasks();
-      this.tasks.push(newlyCreatedTask);
+    obs.subscribe((data: any) => {
+      this.getTasks();
       this.newTask = {
         title: '',
         desc: ''
       };
+
+      if (data.err) {
+        console.log('This was an error', data);
+        this.errors = data.errors;
+        this.success = '';
+      } else {
+        console.log('this was success', data);
+        this.success = 'You created a message!';
+      }
     });
   }
 
@@ -68,24 +75,9 @@ export class AppComponent implements OnInit {
     const obs = this.tasksService.deleteTask(id);
     obs.subscribe(data => {
       this.getTasks();
+      this.success = '';
     });
   }
-
-
-
-  // checkTasks() {
-  //   this.tasks = this.tasksService.tasks.subscribe(tasks => this.tasks = tasks);
-  // }
-
-  // submitNewTask() {
-  //   console.log(this.task);
-  //   this.tasksService.postTask(this.task);
-  //   // this.tasksService.tasks.next(this.task);
-  //   this.task = {
-  //     name: '',
-  //     desc: ''
-  //   };
-  // }
 
 
 
