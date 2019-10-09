@@ -1,5 +1,5 @@
 let Task = require('mongoose').model('Task');
-let errorHandler = require('./helpers/error-handler'); // error handling never changes, so let's make it general
+let errorHandler = require('./helpers/error-handler');
 
 
 module.exports = {
@@ -19,12 +19,12 @@ module.exports = {
         .catch(errorHandler.bind(res));
     },
     update(req, res) {
-      Task.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      Task.findOneAndUpdate({_id: req.params.id}, req.body, { new: true })
         .then(task => res.json(task))
         .catch(errorHandler.bind(res));
     },
     destroy(req, res) {
-      Task.findByIdAndRemove(req.params.id)
+      Task.findOneAndDelete({_id: req.params.id})
         .then(result => res.json(result))
         .catch(errorHandler.bind(res));
     },

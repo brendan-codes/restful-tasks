@@ -10,12 +10,10 @@ let app = express();
 app.use(parser.json())
    .use(parser.urlencoded({ extended: true }));
 
-
 require('./server/config/database.js'); // connects database and loads models
 require('./server/config/routes.js')(app); // runs the routes function, passes app to routes
 
-
 // app.listen
-app.listen(8003, function(){
-    console.log("Running 8003 yadda yadda")
+app.listen(8080, function(){
+    console.log("App on port 8080!");
 })
